@@ -60,7 +60,7 @@ app.get('/api/finnhub/market-status', async (req, res) => {
 app.use(express.static(DIST_DIR));
 
 // SPA Fallback
-app.get('(.*)', (req, res) => {
+app.get('/*splat', (req, res) => {
     res.sendFile(path.join(DIST_DIR, 'index.html'));
 });
 
