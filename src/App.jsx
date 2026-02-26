@@ -16,6 +16,7 @@ import RiskScore from './components/RiskScore';
 import Milestones from './components/Milestones';
 import CorrelationMatrix from './components/CorrelationMatrix';
 import WhatIfSimulator from './components/WhatIfSimulator';
+import OnboardingTour from './components/OnboardingTour';
 import { usePortfolio } from './hooks/usePortfolio';
 import { useAlerts } from './hooks/useAlerts';
 import { useTheme } from './hooks/useTheme';
@@ -230,6 +231,7 @@ export default function App() {
                     onClose={() => setShowWidgetManager(false)}
                 />
             )}
+            <OnboardingTour />
         </div>
     );
 }
