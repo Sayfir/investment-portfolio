@@ -94,6 +94,21 @@ function WidgetManager({ widgets, onToggle, onMove, onReset, onClose }) {
     );
 }
 
+function DashboardWidget({ children, onRemove }) {
+    return (
+        <div style={{ position: 'relative' }} className="dashboard-widget group">
+            <button
+                className="widget-remove-btn"
+                onClick={onRemove}
+                title="Remove Widget"
+            >
+                <X size={14} />
+            </button>
+            {children}
+        </div>
+    );
+}
+
 export default function App() {
     const [activePage, setActivePage] = useState('dashboard');
     const [showModal, setShowModal] = useState(false);
@@ -182,7 +197,15 @@ export default function App() {
                     {/* Dashboard Page — widgets rendered in user-defined order */}
                     {activePage === 'dashboard' && (
                         <>
-                            {widgets.filter(w => w.visible).map(w => widgetComponents[w.id] || null)}
+                            {widgets.filter(w => w.visible).map(w => {
+                                const component = widgetComponents[w.id];
+                                if (!component) return null;
+                                return (
+                                    <DashboardWidget key={w.id} onRemove={() => toggleWidget(w.id)}>
+                                        {component}
+                                    </DashboardWidget>
+                                );
+                            })}
                         </>
                     )}
 

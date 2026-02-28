@@ -5,7 +5,7 @@ const axios = require('axios');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const DATA_DIR = path.join(__dirname, 'data');
 const DIST_DIR = path.join(__dirname, 'dist');
 const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY || '';
@@ -20,9 +20,9 @@ app.use('/api/yahoo', createProxyMiddleware({
     secure: false,
 }));
 
-// Allow requests from Vite dev server
+// Allow requests from Vite dev server or other origins
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+    res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     if (req.method === 'OPTIONS') return res.sendStatus(200);
@@ -65,7 +65,7 @@ app.get('/*splat', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`\n💾 InvestIQ data server → http://localhost:${PORT}`);
+    console.log(`\n💾 InvestIQ data server started on port ${PORT}`);
     console.log(`   Files stored in: ${DATA_DIR}`);
     if (FINNHUB_API_KEY) {
         console.log(`   ✅ Finnhub API key loaded`);

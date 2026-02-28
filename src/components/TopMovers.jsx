@@ -46,7 +46,7 @@ export default function TopMovers({ portfolio }) {
     }
 
     return (
-        <div style={{ display: 'flex', gap: 16, marginBottom: 24 }}>
+        <div className="top-movers-container" style={{ display: 'flex', gap: 16, marginBottom: 24 }}>
             <MoverCard asset={best} label="🏆 Top Gainer" isPositive={best.dayChangePct >= 0} />
             <MoverCard asset={worst} label="📉 Top Loser" isPositive={worst.dayChangePct >= 0} />
         </div>
