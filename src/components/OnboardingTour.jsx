@@ -110,28 +110,10 @@ export default function OnboardingTour() {
 
     return (
         <div className="modal-overlay" style={{ zIndex: 9999, backdropFilter: 'blur(8px)' }}>
-            <div className="modal" style={{
-                width: 850,
-                padding: 0,
-                overflow: 'hidden',
-                backgroundColor: 'rgba(23, 25, 30, 0.95)',
-                border: '1px solid rgba(255,255,255,0.1)',
-                display: 'flex',
-                flexDirection: 'column'
-            }}>
-                <div style={{ display: 'flex', flex: 1, minHeight: 400 }}>
+            <div className="modal onboarding-modal">
+                <div className="onboarding-content-container">
                     {/* Left Pane - Image/Screenshot */}
-                    <div style={{
-                        flex: '1.2',
-                        backgroundColor: 'var(--bg-tertiary)',
-                        borderRight: '1px solid var(--border)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        padding: 24,
-                        position: 'relative',
-                        overflow: 'hidden'
-                    }}>
+                    <div className="onboarding-left-pane">
                         <div style={{
                             position: 'absolute',
                             width: '150%',
@@ -163,14 +145,7 @@ export default function OnboardingTour() {
                     </div>
 
                     {/* Right Pane - Content */}
-                    <div style={{
-                        flex: '1',
-                        padding: '40px 32px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        position: 'relative'
-                    }}>
+                    <div className="onboarding-right-pane">
                         <div style={{
                             opacity: isTransitioning ? 0 : 1,
                             transform: isTransitioning ? 'translateX(10px)' : 'translateX(0)',
@@ -235,10 +210,7 @@ export default function OnboardingTour() {
                 </div>
 
                 {/* Footer / Navigation */}
-                <div style={{
-                    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                    padding: '20px 32px', background: 'rgba(15, 17, 21, 0.4)', borderTop: '1px solid var(--border)'
-                }}>
+                <div className="onboarding-footer">
                     <button
                         className="btn btn-ghost"
                         onClick={handleClose}
